@@ -14,7 +14,7 @@ tmux set-option -g status-style "bg=${bg1}"
 tmux set-option -g status-left ""
 
 # status-right
-tmux set-option -g status-right "#[bg=${act2},fg=${base},italics]#{?#{!=:#{pane_current_command},ssh}, #h,#[bg=${func}] #(ps -t #{pane_tty} -oargs | grep ssh | head --lines 1 | cut --delimiter @ --field 2 )} "
+tmux set-option -g status-right "#[bg=${act2},fg=${base},italics]#{?#{!=:#{pane_current_command},ssh}, #h,#[bg=${func}] #(ps -t #{pane_tty} -oargs | grep ssh | head --lines 1 | cut -d @ -f 2 )} "
 # explanation for the what the f. is going on.
 # #{?                                       // ? is an introduction to tmux's conditional expression.
 #   #{!=:#{pane_current_command},ssh},      // if #{pane_current_command} is ssh, returns 1, else 0.
@@ -37,10 +37,10 @@ tmux set-option -g pane-border-lines heavy
 tmux set-option -g pane-border-indicators arrows
 
 # mode-style
-tmux set-option -g mode-style bg=${highlight},bold
+tmux set-option -g mode-style bg=${highlight},fg=${base},bold
 
 # message-style
-tmux set-option -g message-style bg=${act1}
+tmux set-option -g message-style bg=${act1},fg=${base}
 
 # menu-*-style
 tmux set-option -g menu-selected-style fg=${act2}
